@@ -30,6 +30,7 @@ object SparkCassandraConvert {
       val books = sc.cassandraTable[Books]("testkeyspace","books_by_author")
 	                  .select("author_name","book_name","publish_year","rating")
 
+      
       books.foreach(println)
 	                  
 	    /*val filteredBooks = books.filter { book  => book.author_name.contains("2018")}

@@ -23,6 +23,8 @@ object SparkCassandraProcess {
       val sc = new SparkContext(conf)
       val books = sc.cassandraTable("popularbooks","books_by_author")
 	                  .select("author_name","book_name","publish_year","rating","genres")
+
+
 	                  
 	                  
 	    val filteredBooks = books.filter { row  => row.getSet[String]("genres").contains("Crime")}
@@ -32,6 +34,7 @@ object SparkCassandraProcess {
                               "("+ row.getInt("publish_year")+")"+
                                "["+row.getFloatOption("rating").getOrElse("No Rating")+"]"
                     }.collect.foreach(println)
+
 
      
    }
